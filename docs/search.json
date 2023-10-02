@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "posts/webr-shiny/index.html#intro",
+    "href": "posts/webr-shiny/index.html#intro",
+    "title": "webR and Shiny",
+    "section": "Intro",
+    "text": "Intro\nTBD"
+  },
+  {
+    "objectID": "posts/webr-shiny/index.html#embedded-app",
+    "href": "posts/webr-shiny/index.html#embedded-app",
+    "title": "webR and Shiny",
+    "section": "Embedded app",
+    "text": "Embedded app\nBelow is an embedded R shinylive app running in a separate server. The iframe is included in a {bslib} card."
+  },
+  {
+    "objectID": "posts/webr-shiny/index.html#embedded-app-editor",
+    "href": "posts/webr-shiny/index.html#embedded-app-editor",
+    "title": "webR and Shiny",
+    "section": "Embedded app + editor",
+    "text": "Embedded app + editor\nAn embedded shinylive app editor. User can share the code. Note: the plot won’t likely show on smaller screen leading to an error in the R console."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "shinyguild",
+    "section": "",
+    "text": "Goal\n\n\n\n\nThe purpose of a guild is to:\n\nShare knowledge and expertise about a particular area or subject.\nDiscuss challenges and identify solutions.\nDevelop common standards, tools, or frameworks.\nProvide a forum for continuous improvement and learning.\n\n\n\n\n\n\n\n\nWhen\n\n\n\n\nGuild meetings usually occur less frequently than daily stand-ups or sprint reviews, and participation is often voluntary. These meetings are an opportunity to align on techniques, tools, and best practices, making the guild an effective way to disseminate knowledge and improve skills across an organization.\n\n\n\n\n\n\n\nTopics\n\n\n\n\n\n\nStructure\n\n\nModules:\n\nHow to optimise module communication?\nBest practices to write modules?\n\n\nManage app global state.\n\nModern web stack for Shiny:\n\nManage JavaScript code for complex shiny apps ({packer}, webpack, ...) ...\nSass usage for better CSS ...\n\n\n\n\n\nDeploy\n\nwebR and Shiny: how and when can we skip a Shiny server? https://github.com/RinteRface/webR4Shiny + example with golem app: https://golem-webr.rinterface.com/.\nAutomated deployment on Posit Connect through CICD (GA or woodpecker).\nShinylive for R: https://posit-dev.github.io/r-shinylive/. This is new and will be shown at Posit Conf 2023...\n\n\n\nPerformance\n\n\nAutomated audit of Shiny apps:\n\nPerformance: load test, profiling.\nCode structure.\nReliability: crash tests.\n\n\n\nCaching\n\nShiny builtin caching tools (bindCache, ...).\nweb browser tools like local storage:  this app is slow to start https://dgranjon.shinyapps.io/shinyLocalStorage/ but once run once, it loads faster due to local storage ➝ https://github.com/RinteRface/shinyLocalStorage.\n\n\n\nAsync\n\nHow to leverage callr::r_bg or similar to improve apps performances.\n{crew} ?\n\n\n\n\n\nUser interface\n\nUI, configured by Google Spreadsheet.\nStart with a Wireframe: balsamiq.\n\n\n\nWidgets\n\n`{reactable}`.\npickerGroup: https://github.com/christophsax/shinyWidgets/blob/allow-multiple-in-pickerGroup/R/module-pickerGroup.R (Christoph needs to clean up).\nEncapsulate inter-dependent Shiny inputs into htmlwidget: https://github.com/DivadNojnarg/complexInput. Discussed with Kirill: how can we avoid to have '150' dependent inputs (input$A is needed by input$B, needed for input$c, ...) on the R side by using a single htmlwidget where all the necessary updates occur on the client.\n\n\n\n\n\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\nwebR and Shiny\n\n\n\nnews\n\n\n\n\n\n\n\nDavid Granjon\n\n\nSep 27, 2023\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "A guild is a group of team members who share a common skill, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and best practices."
+  },
+  {
+    "objectID": "about.html#what-is-a-guild",
+    "href": "about.html#what-is-a-guild",
+    "title": "About",
+    "section": "",
+    "text": "A guild is a group of team members who share a common skill, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and best practices."
+  },
+  {
+    "objectID": "posts/webr-shiny/index.html#introduction",
+    "href": "posts/webr-shiny/index.html#introduction",
+    "title": "webR and Shiny",
+    "section": "Introduction",
+    "text": "Introduction\nwebR allows to run R in the browser without any installation. That was one of the main motivation for its creator, George Stagg. The goal of this article is not to describe how webR was developed but what you can do with it.\nUnder the hood, webR is a JavaScript package which can be downloaded from npm (see it as a sort of CRAN for JS packages but fairly less strict regarding the content formatting). As you may imagine, one can’t use the existing CRAN repositories as they are not made for web assembly (wasm), which powers webR. Therefore, the webR team made it possible to compile your own packages, owing to a rather complex toolchain involving Emscripten. The currently provided repository is deployed at https://repo.r-wasm.org/.\nshinylive is a JavaScript app (React) leveraging webR as well as Pyodide (See more here), a Python web browser version. In this article, we’ll only focus on the R side but keep in mind that the shinylive repository supports both. This repository allows to export a working shinylive app.\nThe resulting app may have different layouts:\n\nApp only.\nApp + header for sharing code.\nApp + editor + terminal.\nApp + examples… That’s the one you can access here.\n\nA tiny R package called {shinylive} creates plug and play shiny apps for the browser by downloading all the necessary files from the shinylive repository. Be careful not to be confused!\nA cool feature about the shinylive app is code sharing. The app code is compressed to base64 and shared via the url. Therefore, you can build your app in the editor and share it to others."
+  },
+  {
+    "objectID": "posts/webr-shiny/index.html#customizing-it",
+    "href": "posts/webr-shiny/index.html#customizing-it",
+    "title": "webR and Shiny",
+    "section": "Customizing it",
+    "text": "Customizing it\nWhat if you want to install packages not available on https://repo.r-wasm.org/? You’d have to compile your own packages as described earlier:\n\nBuild webR and all the system libraries.\nBuild this repository and add your packages to the existing https://github.com/r-wasm/webr-repo/blob/main/repo-packages list. Note that in the Makefile you’ll have to give the link to the webR installation by passing WEBR_ROOT=&lt;WEBR_PATH&gt;.\n\nThat’s really not straightforward.\nI was able to compile a customized repository which powers my own shinylive app. I had to slightly change the code to remove the Python support, as it was not necessary."
+  },
+  {
+    "objectID": "posts/webr-shiny/index.html#usage-examples",
+    "href": "posts/webr-shiny/index.html#usage-examples",
+    "title": "webR and Shiny",
+    "section": "Usage examples",
+    "text": "Usage examples\n\n{pkgdown} + shinylive: https://github.com/DivadNojnarg/shinylivePkgDown.\nshinylive + quarto: have a shiny app without having to go back and forth between windows.\n\n\nEmbedded app\nBelow is an embedded R shinylive app running in a separate server. The iframe is included in a {bslib} card.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmbedded app + editor\nAn embedded shinylive app editor. User can share the code. Note: the plot won’t likely show on smaller screen leading to an error in the R console."
+  },
+  {
+    "objectID": "posts/webr-shiny/index.html#limitations",
+    "href": "posts/webr-shiny/index.html#limitations",
+    "title": "webR and Shiny",
+    "section": "Limitations",
+    "text": "Limitations\nCurrently, there are few limitations:\n\nHave to install all packages on app load, which takes some time for R. It will be fixed soon.\nNecessary to have your own CRAN-like for wasm at some point. The webR team won’t be able to compile any single package on request.\nFew R functions don’t work well.\nData are available in the browser. Not suitable for clinical apps in the pharma world, except if data are publicly made available on purpose (synthetic data …).\n\nI personally think webR will be great for teaching and presentations. However, I don’t see it replacing the current infrastructures for more complex apps."
+  }
+]

@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "shinyguild"
+  back-to-top-navigation: true
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/cynkra/shinyguild
+        
+  page-footer: "Copyright 2023, cynkra" 
+  
+format:
+  html:
+    grid:
+      body-width: 1400px
+    theme: litera
+    css: styles.css
+
+
+

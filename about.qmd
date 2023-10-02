@@ -1,0 +1,13 @@
+---
+title: "About"
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/cynkra/shinyguild
+
+---
+
+## What is a guild?
+A guild is a group of team members who share a __common skill__, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and __best practices__.

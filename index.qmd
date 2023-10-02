@@ -1,0 +1,115 @@
+---
+title: "shinyguild"
+listing:
+  id: main
+  contents: posts
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: false
+  filter-ui: true
+page-layout: full
+title-block-banner: true
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(bslib)
+library(shiny)
+accordion(
+  class = "mb-5",
+  accordion_panel(
+    title = "Goal",
+    tagList(
+      p("The purpose of a guild is to:"),
+      tags$ol(
+        tags$li(HTML("Share <b>knowledge</b> and expertise about a particular area or subject.")),
+        tags$li(HTML("Discuss <b>challenges</b> and identify solutions.")),
+        tags$li(HTML("Develop common <b>standards</b>, tools, or frameworks.")),
+        tags$li(HTML("Provide a forum for continuous <b>improvement</b> and <b>learning</b>."))
+      )
+    )
+  ),
+  accordion_panel(
+    title = "When",
+    p("Guild meetings usually occur less frequently than daily stand-ups or sprint reviews, and participation is often voluntary. These meetings are an opportunity to align on techniques, tools, and best practices, making the guild an effective way to disseminate knowledge and improve skills across an organization.")
+  ),
+  accordion_panel(
+    title = "Topics",
+    tags$ol(
+      tags$li(
+        "Structure",
+        tags$ul(
+          tags$li(
+            "Modules:",
+            tags$ul(
+              tags$li("How to optimise module communication?"),
+              tags$li("Best practices to write modules?")
+            )
+          ),
+          tags$li("Manage app global state."),
+          tags$li(
+            "Modern web stack for Shiny:",
+            tags$ul(
+              tags$li("Manage JavaScript code for complex shiny apps ({packer}, webpack, ...) ..."),
+              tags$li("Sass usage for better CSS ...")
+            )
+          )
+        )
+      ),
+      tags$li(
+        "Deploy",
+        tags$ul(
+          tags$li("webR and Shiny: how and when can we skip a Shiny server? https://github.com/RinteRface/webR4Shiny + example with golem app: https://golem-webr.rinterface.com/."),
+          tags$li("Automated deployment on Posit Connect through CICD (GA or woodpecker)."),
+          tags$li("Shinylive for R: https://posit-dev.github.io/r-shinylive/. This is new and will be shown at Posit Conf 2023...")
+        )
+      ),
+      tags$li(
+        "Performance",
+        tags$ul(
+          tags$li(
+            "Automated audit of Shiny apps:",
+            tags$ul(
+              tags$li("Performance: load test, profiling."),
+              tags$li("Code structure."),
+              tags$li("Reliability: crash tests.")
+            )
+          ),
+          tags$li(
+            "Caching",
+            tags$ul(
+              tags$li("Shiny builtin caching tools (bindCache, ...)."),
+              tags$li("web browser tools like local storage:  this app is slow to start https://dgranjon.shinyapps.io/shinyLocalStorage/ but once run once, it loads faster due to local storage ➝ https://github.com/RinteRface/shinyLocalStorage.")
+            )
+          ),
+          tags$li(
+            "Async",
+            tags$ul(
+              tags$li("How to leverage callr::r_bg or similar to improve apps performances."),
+              tags$li("{crew} ?")
+            )
+          )
+        )
+      ),
+      tags$li(
+        "User interface",
+        tags$ul(
+          tags$li("UI, configured by Google Spreadsheet."),
+          tags$li("Start with a Wireframe: balsamiq.")
+        )
+      ),
+      tags$li(
+        "Widgets",
+        tags$ul(
+          tags$li("`{reactable}`."),
+          tags$li("pickerGroup: https://github.com/christophsax/shinyWidgets/blob/allow-multiple-in-pickerGroup/R/module-pickerGroup.R (Christoph needs to clean up)."),
+          tags$li("Encapsulate inter-dependent Shiny inputs into htmlwidget: https://github.com/DivadNojnarg/complexInput. Discussed with Kirill: how can we avoid to have '150' dependent inputs (input$A is needed by input$B, needed for input$c, ...) on the R side by using a single htmlwidget where all the necessary updates occur on the client.")
+        )
+      )
+    )
+  )
+)
+```
+
+::: {#main}
+:::
