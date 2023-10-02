@@ -23,6 +23,7 @@ jobs:
       - name: Install R Dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          extra-packages: posit-dev/r-shinylive
           cache-version: 2
 
       - name: Render and Publish
