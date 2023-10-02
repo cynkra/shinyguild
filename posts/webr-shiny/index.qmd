@@ -95,6 +95,56 @@ An embedded shinylive app editor. User can share the code. Note: the plot won't 
 card(create_app_link("editor"), full_screen = TRUE)
 ```
 
+### Quarto slides
+
+Below is a simple shiny app embedded in a quarto revealjs presentation. To get it working you must:
+
+- Install the shinylive quarto extension, run within your project:
+  ```bash
+  quarto add quarto-ext/shinylive
+  ```
+  
+- Edit `index.qmd` by passing the appropriate filter:
+  ```yaml
+  ---
+  ... other options ...
+  filters: 
+    - shinylive
+  ---
+  ```
+
+- Create the app code:
+  ````bash
+  ```{shinylive-r}
+  #| standalone: true
+  #| components: [editor, viewer]
+  #| column: screen-inset-shaded
+  library("shiny")
+  
+  ui <- fluidPage(
+    numericInput("obs", "Number of observations:",
+      min = 0, max = 1000, value = 500
+    ),
+    plotOutput("distPlot")
+  )
+  
+  # Server logic
+  server <- function(input, output) {
+    output$distPlot <- renderPlot({
+      hist(rnorm(input$obs))
+    })
+  }
+  
+  shinyApp(ui, server)
+  ```
+  ````
+  
+The result is shown below. As you can see, there is currently a layout issue, as there is an offset in the editor pane.
+
+```{=html}
+<iframe width="100%" height="800px" class="slide-deck" src="revealjs-demo/"></iframe>
+```
+
 ## Limitations
 
 Currently, there are few limitations:

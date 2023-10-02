@@ -1,0 +1,41 @@
+---
+title: "shinylive and Quarto"
+subtitle: "How to embed a Shiny app in a Quarto revealjs"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    css: styles.css
+    footer: <https://quarto.org>
+filters: 
+  - shinylive
+---
+
+## Hello Shiny
+
+```{shinylive-r}
+#| standalone: true
+#| components: [editor, viewer]
+#| column: screen-inset-shaded
+library("shiny")
+
+## INSERT `ui` and `server` CODE HERE ##
+ui <- fluidPage(
+  numericInput("obs", "Number of observations:",
+    min = 0, max = 1000, value = 500
+  ),
+  plotOutput("distPlot")
+)
+
+# Server logic
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+# Complete app with UI and server components
+shinyApp(ui, server)
+```
