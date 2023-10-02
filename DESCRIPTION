@@ -1,0 +1,15 @@
+Package: shinyguild
+Title: Dummy description to install dependencies on CICD
+Version: 0.0.0.9000
+Authors@R: 
+    person("David", "Granjon", , "dgranjon@ymail.com", role = c("aut", "cre"))
+Description: Nothing. Provides dependencies list to install necessary packages on 
+    GitHub actions.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    bslib,
+    shiny,
+    shinylive

@@ -8,6 +8,8 @@ listing:
   categories: true
   sort-ui: false
   filter-ui: true
+  exclude:
+    title: "shinylive and Quarto"
 page-layout: full
 title-block-banner: true
 ---
