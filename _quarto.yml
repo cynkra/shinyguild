@@ -20,5 +20,6 @@ format:
     theme: litera
     css: styles.css
 
-
+execute:
+  freeze: auto
 
