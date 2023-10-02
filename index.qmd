@@ -15,6 +15,7 @@ title-block-banner: true
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(bslib)
 library(shiny)
+library(shinylive)
 accordion(
   class = "mb-5",
   accordion_panel(
