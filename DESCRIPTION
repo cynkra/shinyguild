@@ -13,3 +13,5 @@ Imports:
     bslib,
     shiny,
     shinylive
+Remotes:
+    posit-dev/shinylive
