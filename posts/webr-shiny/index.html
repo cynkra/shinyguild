@@ -75,6 +75,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="../..">
+<script src="../../site_libs/quarto-contrib/shinylive-0.2.0/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.2.0/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.2.0/shinylive/shinylive.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -198,12 +203,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="customizing-it" class="level2">
 <h2 class="anchored" data-anchor-id="customizing-it">Customizing it</h2>
+<p>At the time of writing, <strong>18094</strong> packages are built for wasm (<strong>10379</strong> also have their dependencies available), as shown below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bs4Dash-webr.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">webR CRAN packages</figcaption>
+</figure>
+</div>
 <p>What if you want to install packages not available on https://repo.r-wasm.org/? You’d have to compile your own packages as described earlier:</p>
 <ul>
 <li>Build webR and all the system libraries.</li>
 <li>Build this <a href="https://github.com/r-wasm/webr-repo">repository</a> and add your packages to the existing <code>https://github.com/r-wasm/webr-repo/blob/main/repo-packages</code> list. Note that in the <code>Makefile</code> you’ll have to give the link to the webR installation by passing <code>WEBR_ROOT=&lt;WEBR_PATH&gt;</code>.</li>
 </ul>
-<p>That’s really not straightforward.</p>
+<p>The first step is really not straightforward.</p>
 <p>I was able to compile a customized <a href="https://github.com/RinteRface/rinterface-webr-repo">repository</a> which powers my own shinylive <a href="https://github.com/RinteRface/rinterface-shinylive">app</a>. I had to slightly change the code to remove the Python support, as it was not necessary.</p>
 </section>
 <section id="usage-examples" class="level2">
@@ -214,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="embedded-app" class="level3">
 <h3 class="anchored" data-anchor-id="embedded-app">Embedded app</h3>
-<p>Below is an embedded R shinylive app running in a separate server. The iframe is included in a <code>{bslib}</code> card.</p>
+<p>Below is an embedded R shinylive app running in a separate server hosted on Netlify. The iframe is included in a <code>{bslib}</code> card.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init="" data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5">
@@ -248,9 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="quarto-slides" class="level3">
-<h3 class="anchored" data-anchor-id="quarto-slides">Quarto slides</h3>
-<p>Below is a simple shiny app embedded in a quarto revealjs presentation. To get it working you must:</p>
+<section id="shinylive-quarto-extension" class="level3">
+<h3 class="anchored" data-anchor-id="shinylive-quarto-extension">shinylive Quarto extension</h3>
+<section id="within-a-quarto-document" class="level4">
+<h4 class="anchored" data-anchor-id="within-a-quarto-document">Within a Quarto document</h4>
+<p>Below is a simple shiny app powered by the shinylive extension.</p>
+<p>To get it working you must:</p>
 <ul>
 <li><p>Install the shinylive quarto extension, run within your project:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add quarto-ext/shinylive</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -284,8 +299,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">ui,</span> server<span class="kw">)</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
+<pre class="shinylive-r" data-engine="r"><code>#| standalone: true
+#| components: [editor, viewer]
+#| column: screen-inset-shaded
+library("shiny")
+
+ui &lt;- fluidPage(
+  numericInput("obs", "Number of observations:",
+    min = 0, max = 1000, value = 500
+  ),
+  plotOutput("distPlot")
+)
+
+# Server logic
+server &lt;- function(input, output) {
+  output$distPlot &lt;- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="quarto-revealjs-slides" class="level4">
+<h4 class="anchored" data-anchor-id="quarto-revealjs-slides">Quarto revealjs slides</h4>
+<p>Below is a simple shiny app embedded in a quarto revealjs presentation. The process is the same as described above, except that the <code>index.qmd</code> file to change is the one from the Quarto slides.</p>
 <p>The result is shown below. As you can see, there is currently a layout issue, as there is an offset in the editor pane.</p>
 <iframe width="100%" height="800px" class="slide-deck" src="revealjs-demo/"></iframe>
+</section>
 </section>
 </section>
 <section id="limitations" class="level2">
