@@ -26,6 +26,8 @@ jobs:
           extra-packages: |
             posit-dev/r-shinylive
             rmarkdown
+            bslib
+            shiny
           cache-version: 2
 
       - name: Render and Publish

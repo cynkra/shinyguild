@@ -3,6 +3,8 @@ title: "webR and Shiny"
 author: "David Granjon"
 date: "2023-09-27"
 categories: [news]
+filters: 
+    - shinylive
 ---
 
 ![](webr-shiny.png){width="25%" fig.align="center"}
@@ -65,12 +67,16 @@ A cool feature about the shinylive app is code sharing. The app code is compress
 
 ## Customizing it
 
+At the time of writing, __18094__ packages are built for wasm (__10379__ also have their dependencies available), as shown below.
+
+![webR CRAN packages](bs4Dash-webr.png)
+
 What if you want to install packages not available on https://repo.r-wasm.org/? You'd have to compile your own packages as described earlier:
 
 - Build webR and all the system libraries.
 - Build this [repository](https://github.com/r-wasm/webr-repo) and add your packages to the existing `https://github.com/r-wasm/webr-repo/blob/main/repo-packages` list. Note that in the `Makefile` you'll have to give the link to the webR installation by passing `WEBR_ROOT=<WEBR_PATH>`.
 
-That's really not straightforward.
+The first step is really not straightforward.
 
 I was able to compile a customized [repository](https://github.com/RinteRface/rinterface-webr-repo) which powers my own shinylive [app](https://github.com/RinteRface/rinterface-shinylive). I had to slightly change the code to remove the Python support, as it was not necessary.
 
@@ -81,7 +87,7 @@ I was able to compile a customized [repository](https://github.com/RinteRface/ri
 
 ### Embedded app
 
-Below is an embedded R shinylive app running in a separate server. The iframe is included in a `{bslib}` card. 
+Below is an embedded R shinylive app running in a separate server hosted on Netlify. The iframe is included in a `{bslib}` card. 
 
 ```{r, eval=TRUE, echo=FALSE}
 card(create_app_link("app", FALSE), full_screen = TRUE)
@@ -95,9 +101,12 @@ An embedded shinylive app editor. User can share the code. Note: the plot won't 
 card(create_app_link("editor"), full_screen = TRUE)
 ```
 
-### Quarto slides
+### shinylive Quarto extension 
 
-Below is a simple shiny app embedded in a quarto revealjs presentation. To get it working you must:
+#### Within a Quarto document
+Below is a simple shiny app powered by the shinylive extension.
+
+To get it working you must:
 
 - Install the shinylive quarto extension, run within your project:
   ```bash
@@ -138,6 +147,35 @@ Below is a simple shiny app embedded in a quarto revealjs presentation. To get i
   shinyApp(ui, server)
   ```
   ````
+
+```{shinylive-r}
+#| standalone: true
+#| components: [editor, viewer]
+#| column: screen-inset-shaded
+library("shiny")
+
+ui <- fluidPage(
+  numericInput("obs", "Number of observations:",
+    min = 0, max = 1000, value = 500
+  ),
+  plotOutput("distPlot")
+)
+
+# Server logic
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+#### Quarto revealjs slides
+
+Below is a simple shiny app embedded in a quarto revealjs presentation. The process
+is the same as described above, except that the `index.qmd` file to change is the one
+from the Quarto slides.
   
 The result is shown below. As you can see, there is currently a layout issue, as there is an offset in the editor pane.
 
