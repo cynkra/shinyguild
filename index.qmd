@@ -9,9 +9,13 @@ listing:
   sort-ui: false
   filter-ui: true
   exclude:
-    title: "shinylive and Quarto"
+  # All embedded slide deck should go here so they don't appear
+  # in the main menu.
+    title: [
+      "shinylive and Quarto",
+      "JS survival kit for Shiny devs"
+    ]
 page-layout: full
-title-block-banner: true
 ---
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}

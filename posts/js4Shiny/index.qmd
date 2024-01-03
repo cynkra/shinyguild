@@ -1,0 +1,14 @@
+---
+title: "JavaScript for Shiny"
+author: "David Granjon"
+date: "2024-01-03"
+categories: [news]
+---
+
+A quick and dirty introduction to JS for Shiny developers.
+
+![](javascript.svg){width="25%" fig.align="center"}
+
+```{=html}
+<iframe width="100%" height="800px" class="slide-deck" src="slides/"></iframe>
+```

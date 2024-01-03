@@ -1,0 +1,668 @@
+---
+title: "JS survival kit for Shiny devs"
+author: "David Granjon"
+format: 
+  revealjs:
+    code-link: true
+    code-copy: true
+    fontsize: 24pt
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    chalkboard: true
+    transition: slide
+    background-transition: fade
+    title-slide-attributes:
+      data-state: "hide-menubar"
+    simplemenu:
+      barhtml:
+        header: "<div class='menubar'><ul class='menu'></ul><div>"
+        #footer: "<img src='...' class='slide-logo r-stretch'>"
+      scale: 0.67
+revealjs-plugins:
+  - simplemenu
+---
+
+# Types {data-stack-name="Types"}
+
+## Types
+
+JS defines several primitive types:
+
+- Number.
+- String.
+- Boolean.
+- Null.
+- Undefined.
+
+`typeof` is a type operator:
+
+```js
+typeof 1; // Number
+typeof 'pouic'; // String
+```
+
+::: {.callout-note appearance="simple"}
+JS does not distinguish between integers and others. In R for instance, numeric contains integers and double.
+:::
+
+## Operators
+
+List of __arithmetic__ operators in JS:
+
+- `+`
+- `-`
+- `*`
+- `/`
+- `%` (modulo).
+- `++` (incrementation).
+- `--` (decrementation).
+
+`+` adds two numbers, while it concatenates two strings:
+
+```js
+1 + 1; // 2
+"toto" + "titi"; // "tototiti"
+```
+
+## Exercise
+
+- What would return `typeof plop`?
+- What is the output of `typeof '1'`?
+
+
+# Variables {data-stack-name="Variables"}
+
+## Variables
+
+In JS, a variable is defined by:
+
+- A type.
+- A name.
+- A value.
+
+Most of the time, __camelCase__ is the preferred choice.
+
+::: {.callout-important appearance="simple"}
+A valid variable name:
+
+- Doesn’t use a __reserved__ JS name like `typeof`!
+- Doesn’t start with a number (123soleil)!
+- Doesn’t include any space (total price)!
+:::
+
+## Const
+
+__const__:
+
+- Cannot be modified.
+- Cannot share the same name.
+- Must be assigned a value.
+
+```js
+const n = 1;
+n = 2; // error
+const n = 3; // error
+const a;
+a = 1; // errors
+```
+
+## let
+
+Define a variable and edit it later:
+
+```js
+let myNumber = 1; // initialize
+myNumber--; // decrement
+console.log(myNumber); // print 0
+```
+
+## var
+
+What is the difference with `let`?
+
+```js
+var i = 1;
+{
+  var i = 2; // this will modify i globally, not locally
+}
+console.log(`i is ${i}`); // i is 2.
+```
+
+With __let__:
+
+```js
+let j = 1;
+{
+  let j = 2; // j is only declared locally and not globally!
+}
+console.log(`j is ${j}`); // j is 1
+```
+
+## Other operators
+
+Arithmetic operators still apply.
+
+__Assignement__ operators:
+
+- `=`
+- `+=`: `a += b` is equivalent to `a = a + b`.
+- ...
+
+## Exercise
+
+- What is the output of this (Hint: think about type and value)?
+
+```js
+undefined === null
+undefined == null
+```
+
+- What is the result of this?
+
+```js
+let test = "";
+test === null;
+test === undefined
+```
+
+# Conditions {data-stack-name="Conditions"}
+
+## Basics
+
+Comparison operators:
+
+- `===`: check value AND type.
+- `==`: check value. Don't do this.
+- `!==`: not equal value and type.
+- `>`, `>=`, `<`, `<=`.
+- `AND` or `&&`.
+- `OR` or `||`.
+
+::: {.callout-important appearance="simple"}
+Prefer `===` over `==` since `5 == '5'` is `true`.
+:::
+
+## Tests
+
+`if` and `else`:
+
+```js
+if (condition) {
+  //
+}
+if (condition) {
+  //
+} else {
+  //
+}
+```
+
+__Ternary__ operator:
+
+```js
+condition ? instruction if true : instruction if false
+```
+
+If loads of conditions, `switch`:
+
+```js
+switch (variable) {
+  case val1: // instruction 1
+  break; // don't forget the break!
+  case val2:  // instruction 2
+  break;
+  default: // when none of val1 and val2 are satisfied
+}
+```
+
+# Data structures {data-stack-name="Data structures"}
+
+## Objects basics
+
+JS is an __object-oriented__ programming language. An object is defined by:
+
+- A __type__.
+- Some __properties__ (key-value pairs).
+_ Some __methods__ (to manipulate properties).
+
+```js
+const me = {
+  name : 'Divad',
+  age : 29,
+  music : ''
+}
+```
+
+__this__ refers to the object itself.
+
+::: {.callout-important appearance="simple"}
+Why can we change `me` while it is declared with `const`?
+We can't reassign `me` but we can alter its content. The memory location remains the same.
+:::
+
+## Object manipulations
+
+Read object properties with `.`:
+
+```js
+object.<property> = ...;
+```
+
+We can define new properties/methods or modify them:
+
+```js
+me.geek = true;
+me.age = 33; // time flies.
+Object.defineProperty(me, 'printAge', {
+  value: function() {
+    console.log(`I am ${this.name}`);
+  },
+  writable: false
+})
+```
+
+Human readable format:
+
+```js
+JSON.stringify(me)
+```
+
+## Arrays: basics
+
+An array is a structure to store information with different type. They're similar to `list` in R:
+
+```js
+const table = [1, 'plop'];
+table = [2]; // error
+console.log(table);
+```
+
+Array may be nested:
+
+```js
+const nested = [1, ['a', [1, 2, 3]], 'plop'];
+console.log(nested);
+console.log(nested[0]);
+// To get deeply nested element
+// we may chain index
+nested[1][1] // Access [1, 2, 3]
+```
+
+::: {.callout-note appearance="simple"}
+Be careful! In JS, indexing starts from __0__, not __1__ like in R.
+:::
+
+## Arrays: methods
+
+JS provides methods specific to arrays, below a sample:
+
+method| description
+-----|-----:
+length|Returns the number of elements
+push|Add element at the end.
+
+## Copy by value/reference
+
+### Copy by value
+
+Content is duplicated for simple type (boolean, string, number):
+
+```js
+let var1 = 25;
+let var2 = var1;
+```
+
+```{mermaid}
+flowchart LR
+  A(var1) --> C(25)
+  B(var2) --> D(25)
+```
+
+What will happen to `var1` if we do `var2 = 3`?
+
+### Copy by reference
+
+For more complex types:
+
+```js
+let fruits = ["banana"];
+let superFruits = fruits;
+```
+
+What will happen to `fruits` if we do `superFruits[0] = 'peach'`?
+
+```{mermaid}
+flowchart LR
+  fruits --> container(banana)
+  superFruits --> container(banana)
+```
+
+How to prevent this? Use `spread` operator:
+
+```js
+let superFruits = [...fruits];
+```
+
+
+# Iteration {data-stack-name="Iteration"}
+
+## For loops
+
+ES6 version:
+
+```js
+// ES6 syntax
+const nested = [1, ['a', [1, 2, 3]], 'plop'];
+for (let el of nested) {
+  console.log(el);
+}
+```
+
+Classic version (more verbose and error prone):
+
+```js
+// or with the classic approach
+for (let i = 0; i < nested.length; i++) {
+  console.log(nested[i]);
+}
+```
+
+With an array, we can use `forEach`:
+
+```js
+const letters = ['a', 'b', 'c', 'd'];
+letters.forEach((letter) => {
+  console.log(letter);
+});
+```
+
+## While
+
+Q: how many times i will be printed?
+
+```js
+const h = 3;
+let i = 0;
+while (i <= h) {
+  console.log(i);
+  i++; // increment to avoid infinite loop
+}
+```
+
+## Iterate on object
+
+`for` __key__ `in` __object__:
+
+```js
+for (let key in object) { 
+  if (object.hasOwnProperty(key)) {
+    //
+  }
+}
+```
+
+Otherwise, we can leverage `Object.entries`:
+
+```js
+for (const [key, value] of Object.entries(object)) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+Similar methods exist like `Object.keys` or `Object.values`.
+
+# Functions {data-stack-name="functions"}
+
+## Basics
+
+Wrap a succession of instructions to accomplish a given task.
+
+```js
+const a = 1;
+const fun = (parm1, parm2) => {
+  console.log(a);
+  let p = 3;
+  // The Math object contains the max method
+  return Math.max(parm1, parm2);
+}
+let res = fun(1, 2);
+console.log(res); // prints a and 2
+console.log(p);
+```
+
+The old way:
+
+```js
+function funName(parm) {
+  // do things
+}
+```
+
+# Events {data-stack-name="events"}
+
+## DOM manipulation: get
+
+One can play with JSFiddle.
+
+A button in the DOM:
+
+```html
+<button id="mybutton">Go!</button>
+```
+
+Get the element:
+
+```js
+const btn = document.getElementById('mybutton');
+```
+
+::: {.callout-note appearance="simple"}
+Other selector methods exist like `getElementByClassName`, `querySelector`, `querySelectorAll`, ...
+:::
+
+## DOM manipulation: modify
+
+You may add a new CSS rule to test:
+
+```css
+.class1 {
+  background: green;
+  color: white;
+}
+```
+
+Add a new class:
+
+```js
+btn.classList = 'class1 class2';
+btn.classList.add('class3'); // keep othe classes.
+btn.classList.remove('class2');
+console.log(btn.classList);
+```
+
+Change text:
+
+```js
+btn.innerHTML = "New text";
+```
+
+## Exercice: edit DOM element
+
+Consider this `<button id="mybutton">Go!</button>` button.
+Within JSFiddle, add some JS code to change the button content to `My super button`.
+
+## DOM manipulation: create
+
+Combine `createElement` and `append`:
+
+```js
+const divTxt = "Awesome text!"
+const myDiv = document.createElement("div");
+myDiv.classList = "class1";
+myDiv.innerHTML = `<span>${txt}</span>`;
+document.append(myDiv);
+```
+
+## JS events
+Add an __event listener__:
+
+```js
+btn.addEventListener('click', function() {
+  alert('Thanks!');
+});
+```
+
+## Exercise: events
+
+Consider this `<button id="mybutton">Go!</button>` button.
+Add it an event listener that would change the button text to `You clicked me!` once clicked.
+
+## jQuery
+
+__jQuery__ is a famous JS library providing a user-friendly interface to manipulate the DOM.
+
+Wrap your code in (ensure the DOM is ready):
+
+```js
+$(document).ready(function(){
+  // your code
+});
+```
+
+jQuery is less verbose than JS:
+
+```js
+// vanilla JS
+let inner = document.getElementsByClassName('text').innerHTML;
+// jQuery
+let inner = $('.text').html();
+$('button').on('click', function() {
+
+});
+```
+
+## Exercise.
+
+Consider the following button
+
+```html
+<button>Clicks: 0</button>
+```
+
+Write a script that shows how much time we clicked on the button. Fill in the blanks:
+
+```js
+$(function() {
+
+  // Init the click number
+  let n = ...;
+
+    // event listener for button element
+    $(...).click(function() {
+    // Increment the number of clicks
+    n += ...;
+    
+    // Update content
+    $(this).html(...);
+  });
+
+});
+```
+
+## Correction
+
+```js
+$(function() {
+
+  // Init the click number
+  let n = 0;
+
+    // event listener for button element
+    $("button").click(function() {
+      // Increment count
+      n += 1;
+      // (2) add the button value to the inner text
+      $(this).html(`Clicks: ${n}`);
+  });
+
+});
+```
+
+# Modularisation {data-stack-name="Modules"}
+
+## Modularisation
+
+How to reuse a function in different scripts?
+
+Old way:
+
+```js
+// utils scripts
+const findMax = (parm1, parm2) => {
+  return Math.max(parm1, parm2);
+}
+
+module.exports = {
+  findMax : findMax
+}
+```
+
+Then, within the `main.js` script:
+
+```js
+const { findMax } = require('<PATH_TO_utils.js>');
+findMax(1, 2); // prints 2
+```
+
+ES6 way:
+
+```js
+export { findMax, ... }; // in utils.js
+import { findMax, ...} from './utils.js'; // in test.js
+```
+
+## Code management
+
+As ES6 is not fully supported by all web browsers, we use a __transpiler__ like `Babel` to convert it to standard JS.
+
+
+JS __bundlers__ for modules: `webpack`, `esbuild`, ...
+
+
+## Get started with esbuild
+
+::: {style="font-size: 70%;"}
+
+Pre-requisite: have __node__ installed (for npm).
+
+1. Create a new folder.
+2. Run `npm install --save-exact --save-dev esbuild`.
+3. Create a `utils.js` and add it:
+
+```js
+export const findMax = (parm1, parm2) => {
+  return Math.max(parm1, parm2);
+}
+```
+4. Create `main.js` and add it:
+
+```js
+import { findMax } from './utils.js';
+console.log(findMax(1, 2));
+```
+5. Edit `package.json` to add a `build` instruction:
+
+```json
+{
+  "scripts": {
+    "build": "esbuild main.js --bundle --minify --sourcemap=external --outfile=out.min.js"
+  },
+  "devDependencies": { 
+    "esbuild": "0.19.6"
+  }
+}
+```
+6. Run `npm run build` and `node out.js` to test the new script. Notice that you can replace `build` by any predefined instruction.
+
+:::
