@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
     "section": "",
-    "text": "A guild is a group of team members who share a common skill, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and best practices."
-  },
-  {
-    "objectID": "about.html#what-is-a-guild",
-    "href": "about.html#what-is-a-guild",
-    "title": "About",
-    "section": "",
-    "text": "A guild is a group of team members who share a common skill, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and best practices."
+    "text": "MIT License\nCopyright (c) 2023 shinyguild authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
   },
   {
     "objectID": "posts/webr-shiny/index.html#introduction",
@@ -42,18 +35,256 @@
     "text": "Limitations\nCurrently, there are few limitations:\n\nHave to install all packages on app load, which takes some time for R. It will be fixed soon.\nNecessary to have your own CRAN-like for wasm at some point. The webR team won’t be able to compile any single package on request.\nFew R functions don’t work well.\nData are available in the browser. Not suitable for clinical apps in the pharma world, except if data are publicly made available on purpose (synthetic data …).\n\nI personally think webR will be great for teaching and presentations. However, I don’t see it replacing the current infrastructures for more complex apps."
   },
   {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
+    "objectID": "posts/js4Shiny/index.html",
+    "href": "posts/js4Shiny/index.html",
+    "title": "JavaScript for Shiny",
     "section": "",
-    "text": "MIT License\nCopyright (c) 2023 shinyguild authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
+    "text": "A quick and dirty introduction to JS for Shiny developers.\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "A guild is a group of team members who share a common skill, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and best practices."
+  },
+  {
+    "objectID": "about.html#what-is-a-guild",
+    "href": "about.html#what-is-a-guild",
+    "title": "About",
+    "section": "",
+    "text": "A guild is a group of team members who share a common skill, interest, or role within the organization. Guilds are cross-team and often cross-project, serving as communities of knowledge and best practices."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "shinyguild",
     "section": "",
-    "text": "Goal\n\n\n\n\nThe purpose of a guild is to:\n\nShare knowledge and expertise about a particular area or subject.\nDiscuss challenges and identify solutions.\nDevelop common standards, tools, or frameworks.\nProvide a forum for continuous improvement and learning.\n\n\n\n\n\n\n\n\nWhen\n\n\n\n\nGuild meetings usually occur less frequently than daily stand-ups or sprint reviews, and participation is often voluntary. These meetings are an opportunity to align on techniques, tools, and best practices, making the guild an effective way to disseminate knowledge and improve skills across an organization.\n\n\n\n\n\n\n\nTopics\n\n\n\n\n\n\nStructure\n\n\nModules:\n\nHow to optimise module communication?\nBest practices to write modules?\n\n\nManage app global state.\n\nModern web stack for Shiny:\n\nManage JavaScript code for complex shiny apps ({packer}, webpack, ...) ...\nSass usage for better CSS ...\n\n\n\n\n\nDeploy\n\nwebR and Shiny: how and when can we skip a Shiny server? https://github.com/RinteRface/webR4Shiny + example with golem app: https://golem-webr.rinterface.com/.\nAutomated deployment on Posit Connect through CICD (GA or woodpecker).\nShinylive for R: https://posit-dev.github.io/r-shinylive/. This is new and will be shown at Posit Conf 2023...\n\n\n\nPerformance\n\n\nAutomated audit of Shiny apps:\n\nPerformance: load test, profiling.\nCode structure.\nReliability: crash tests.\n\n\n\nCaching\n\nShiny builtin caching tools (bindCache, ...).\nweb browser tools like local storage:  this app is slow to start https://dgranjon.shinyapps.io/shinyLocalStorage/ but once run once, it loads faster due to local storage ➝ https://github.com/RinteRface/shinyLocalStorage.\n\n\n\nAsync\n\nHow to leverage callr::r_bg or similar to improve apps performances.\n{crew} ?\n\n\n\n\n\nUser interface\n\nUI, configured by Google Spreadsheet.\nStart with a Wireframe: balsamiq.\n\n\n\nWidgets\n\n`{reactable}`.\npickerGroup: https://github.com/christophsax/shinyWidgets/blob/allow-multiple-in-pickerGroup/R/module-pickerGroup.R (Christoph needs to clean up).\nEncapsulate inter-dependent Shiny inputs into htmlwidget: https://github.com/DivadNojnarg/complexInput. Discussed with Kirill: how can we avoid to have '150' dependent inputs (input$A is needed by input$B, needed for input$c, ...) on the R side by using a single htmlwidget where all the necessary updates occur on the client.\n\n\n\n\n\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\nwebR and Shiny\n\n\n\nnews\n\n\n\n\n\n\n\nDavid Granjon\n\n\nSep 27, 2023\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n Back to top"
+    "text": "Goal\n\n\n\n\nThe purpose of a guild is to:\n\nShare knowledge and expertise about a particular area or subject.\nDiscuss challenges and identify solutions.\nDevelop common standards, tools, or frameworks.\nProvide a forum for continuous improvement and learning.\n\n\n\n\n\n\n\n\nWhen\n\n\n\n\nGuild meetings usually occur less frequently than daily stand-ups or sprint reviews, and participation is often voluntary. These meetings are an opportunity to align on techniques, tools, and best practices, making the guild an effective way to disseminate knowledge and improve skills across an organization.\n\n\n\n\n\n\n\nTopics\n\n\n\n\n\n\nStructure\n\n\nModules:\n\nHow to optimise module communication?\nBest practices to write modules?\n\n\nManage app global state.\n\nModern web stack for Shiny:\n\nManage JavaScript code for complex shiny apps ({packer}, webpack, ...) ...\nSass usage for better CSS ...\n\n\n\n\n\nDeploy\n\nwebR and Shiny: how and when can we skip a Shiny server? https://github.com/RinteRface/webR4Shiny + example with golem app: https://golem-webr.rinterface.com/.\nAutomated deployment on Posit Connect through CICD (GA or woodpecker).\nShinylive for R: https://posit-dev.github.io/r-shinylive/. This is new and will be shown at Posit Conf 2023...\n\n\n\nPerformance\n\n\nAutomated audit of Shiny apps:\n\nPerformance: load test, profiling.\nCode structure.\nReliability: crash tests.\n\n\n\nCaching\n\nShiny builtin caching tools (bindCache, ...).\nweb browser tools like local storage:  this app is slow to start https://dgranjon.shinyapps.io/shinyLocalStorage/ but once run once, it loads faster due to local storage ➝ https://github.com/RinteRface/shinyLocalStorage.\n\n\n\nAsync\n\nHow to leverage callr::r_bg or similar to improve apps performances.\n{crew} ?\n\n\n\n\n\nUser interface\n\nUI, configured by Google Spreadsheet.\nStart with a Wireframe: balsamiq.\n\n\n\nWidgets\n\n`{reactable}`.\npickerGroup: https://github.com/christophsax/shinyWidgets/blob/allow-multiple-in-pickerGroup/R/module-pickerGroup.R (Christoph needs to clean up).\nEncapsulate inter-dependent Shiny inputs into htmlwidget: https://github.com/DivadNojnarg/complexInput. Discussed with Kirill: how can we avoid to have '150' dependent inputs (input$A is needed by input$B, needed for input$c, ...) on the R side by using a single htmlwidget where all the necessary updates occur on the client.\n\n\n\n\n\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\nJavaScript for Shiny\n\n\n\nnews\n\n\n\n\n\n\n\nDavid Granjon\n\n\nJan 3, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nwebR and Shiny\n\n\n\nnews\n\n\n\n\n\n\n\nDavid Granjon\n\n\nSep 27, 2023\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#types-1",
+    "href": "posts/js4Shiny/slides/index.html#types-1",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Types",
+    "text": "Types\nJS defines several primitive types:\n\nNumber.\nString.\nBoolean.\nNull.\nUndefined.\n\ntypeof is a type operator:\ntypeof 1; // Number\ntypeof 'pouic'; // String\n\n\n\n\n\n\nJS does not distinguish between integers and others. In R for instance, numeric contains integers and double."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#operators",
+    "href": "posts/js4Shiny/slides/index.html#operators",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Operators",
+    "text": "Operators\nList of arithmetic operators in JS:\n\n+\n-\n*\n/\n% (modulo).\n++ (incrementation).\n-- (decrementation).\n\n+ adds two numbers, while it concatenates two strings:\n1 + 1; // 2\n\"toto\" + \"titi\"; // \"tototiti\""
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#exercise",
+    "href": "posts/js4Shiny/slides/index.html#exercise",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Exercise",
+    "text": "Exercise\n\nWhat would return typeof plop?\nWhat is the output of typeof '1'?"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#variables-1",
+    "href": "posts/js4Shiny/slides/index.html#variables-1",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Variables",
+    "text": "Variables\nIn JS, a variable is defined by:\n\nA type.\nA name.\nA value.\n\nMost of the time, camelCase is the preferred choice.\n\n\n\n\n\n\nA valid variable name:\n\nDoesn’t use a reserved JS name like typeof!\nDoesn’t start with a number (123soleil)!\nDoesn’t include any space (total price)!"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#const",
+    "href": "posts/js4Shiny/slides/index.html#const",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Const",
+    "text": "Const\nconst:\n\nCannot be modified.\nCannot share the same name.\nMust be assigned a value.\n\nconst n = 1;\nn = 2; // error\nconst n = 3; // error\nconst a;\na = 1; // errors"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#let",
+    "href": "posts/js4Shiny/slides/index.html#let",
+    "title": "JS survival kit for Shiny devs",
+    "section": "let",
+    "text": "let\nDefine a variable and edit it later:\nlet myNumber = 1; // initialize\nmyNumber--; // decrement\nconsole.log(myNumber); // print 0"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#var",
+    "href": "posts/js4Shiny/slides/index.html#var",
+    "title": "JS survival kit for Shiny devs",
+    "section": "var",
+    "text": "var\nWhat is the difference with let?\nvar i = 1;\n{\n  var i = 2; // this will modify i globally, not locally\n}\nconsole.log(`i is ${i}`); // i is 2.\nWith let:\nlet j = 1;\n{\n  let j = 2; // j is only declared locally and not globally!\n}\nconsole.log(`j is ${j}`); // j is 1"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#other-operators",
+    "href": "posts/js4Shiny/slides/index.html#other-operators",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Other operators",
+    "text": "Other operators\nArithmetic operators still apply.\nAssignement operators:\n\n=\n+=: a += b is equivalent to a = a + b.\n…"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#exercise-1",
+    "href": "posts/js4Shiny/slides/index.html#exercise-1",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Exercise",
+    "text": "Exercise\n\nWhat is the output of this (Hint: think about type and value)?\n\nundefined === null\nundefined == null\n\nWhat is the result of this?\n\nlet test = \"\";\ntest === null;\ntest === undefined"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#basics",
+    "href": "posts/js4Shiny/slides/index.html#basics",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Basics",
+    "text": "Basics\nComparison operators:\n\n===: check value AND type.\n==: check value. Don’t do this.\n!==: not equal value and type.\n&gt;, &gt;=, &lt;, &lt;=.\nAND or &&.\nOR or ||.\n\n\n\n\n\n\n\nPrefer === over == since 5 == '5' is true."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#tests",
+    "href": "posts/js4Shiny/slides/index.html#tests",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Tests",
+    "text": "Tests\nif and else:\nif (condition) {\n  //\n}\nif (condition) {\n  //\n} else {\n  //\n}\nTernary operator:\ncondition ? instruction if true : instruction if false\nIf loads of conditions, switch:\nswitch (variable) {\n  case val1: // instruction 1\n  break; // don't forget the break!\n  case val2:  // instruction 2\n  break;\n  default: // when none of val1 and val2 are satisfied\n}"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#objects-basics",
+    "href": "posts/js4Shiny/slides/index.html#objects-basics",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Objects basics",
+    "text": "Objects basics\nJS is an object-oriented programming language. An object is defined by:\n\nA type.\nSome properties (key-value pairs). _ Some methods (to manipulate properties).\n\nconst me = {\n  name : 'Divad',\n  age : 29,\n  music : ''\n}\nthis refers to the object itself.\n\n\n\n\n\n\nWhy can we change me while it is declared with const? We can’t reassign me but we can alter its content. The memory location remains the same."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#object-manipulations",
+    "href": "posts/js4Shiny/slides/index.html#object-manipulations",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Object manipulations",
+    "text": "Object manipulations\nRead object properties with .:\nobject.&lt;property&gt; = ...;\nWe can define new properties/methods or modify them:\nme.geek = true;\nme.age = 33; // time flies.\nObject.defineProperty(me, 'printAge', {\n  value: function() {\n    console.log(`I am ${this.name}`);\n  },\n  writable: false\n})\nHuman readable format:\nJSON.stringify(me)"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#arrays-basics",
+    "href": "posts/js4Shiny/slides/index.html#arrays-basics",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Arrays: basics",
+    "text": "Arrays: basics\nAn array is a structure to store information with different type. They’re similar to list in R:\nconst table = [1, 'plop'];\ntable = [2]; // error\nconsole.log(table);\nArray may be nested:\nconst nested = [1, ['a', [1, 2, 3]], 'plop'];\nconsole.log(nested);\nconsole.log(nested[0]);\n// To get deeply nested element\n// we may chain index\nnested[1][1] // Access [1, 2, 3]\n\n\n\n\n\n\nBe careful! In JS, indexing starts from 0, not 1 like in R."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#arrays-methods",
+    "href": "posts/js4Shiny/slides/index.html#arrays-methods",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Arrays: methods",
+    "text": "Arrays: methods\nJS provides methods specific to arrays, below a sample:\n\n\n\nmethod\ndescription\n\n\n\n\nlength\nReturns the number of elements\n\n\npush\nAdd element at the end."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#copy-by-valuereference",
+    "href": "posts/js4Shiny/slides/index.html#copy-by-valuereference",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Copy by value/reference",
+    "text": "Copy by value/reference\nCopy by value\nContent is duplicated for simple type (boolean, string, number):\nlet var1 = 25;\nlet var2 = var1;\n\n\n\n\nflowchart LR\n  A(var1) --&gt; C(25)\n  B(var2) --&gt; D(25)\n\n\n\n\n\nWhat will happen to var1 if we do var2 = 3?\nCopy by reference\nFor more complex types:\nlet fruits = [\"banana\"];\nlet superFruits = fruits;\nWhat will happen to fruits if we do superFruits[0] = 'peach'?\n\n\n\n\nflowchart LR\n  fruits --&gt; container(banana)\n  superFruits --&gt; container(banana)\n\n\n\n\n\nHow to prevent this? Use spread operator:\nlet superFruits = [...fruits];"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#for-loops",
+    "href": "posts/js4Shiny/slides/index.html#for-loops",
+    "title": "JS survival kit for Shiny devs",
+    "section": "For loops",
+    "text": "For loops\nES6 version:\n// ES6 syntax\nconst nested = [1, ['a', [1, 2, 3]], 'plop'];\nfor (let el of nested) {\n  console.log(el);\n}\nClassic version (more verbose and error prone):\n// or with the classic approach\nfor (let i = 0; i &lt; nested.length; i++) {\n  console.log(nested[i]);\n}\nWith an array, we can use forEach:\nconst letters = ['a', 'b', 'c', 'd'];\nletters.forEach((letter) =&gt; {\n  console.log(letter);\n});"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#while",
+    "href": "posts/js4Shiny/slides/index.html#while",
+    "title": "JS survival kit for Shiny devs",
+    "section": "While",
+    "text": "While\nQ: how many times i will be printed?\nconst h = 3;\nlet i = 0;\nwhile (i &lt;= h) {\n  console.log(i);\n  i++; // increment to avoid infinite loop\n}"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#iterate-on-object",
+    "href": "posts/js4Shiny/slides/index.html#iterate-on-object",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Iterate on object",
+    "text": "Iterate on object\nfor key in object:\nfor (let key in object) { \n  if (object.hasOwnProperty(key)) {\n    //\n  }\n}\nOtherwise, we can leverage Object.entries:\nfor (const [key, value] of Object.entries(object)) {\n  console.log(`${key}: ${value}`);\n}\nSimilar methods exist like Object.keys or Object.values."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#basics-1",
+    "href": "posts/js4Shiny/slides/index.html#basics-1",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Basics",
+    "text": "Basics\nWrap a succession of instructions to accomplish a given task.\nconst a = 1;\nconst fun = (parm1, parm2) =&gt; {\n  console.log(a);\n  let p = 3;\n  // The Math object contains the max method\n  return Math.max(parm1, parm2);\n}\nlet res = fun(1, 2);\nconsole.log(res); // prints a and 2\nconsole.log(p);\nThe old way:\nfunction funName(parm) {\n  // do things\n}"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#dom-manipulation-get",
+    "href": "posts/js4Shiny/slides/index.html#dom-manipulation-get",
+    "title": "JS survival kit for Shiny devs",
+    "section": "DOM manipulation: get",
+    "text": "DOM manipulation: get\nOne can play with JSFiddle.\nA button in the DOM:\n&lt;button id=\"mybutton\"&gt;Go!&lt;/button&gt;\nGet the element:\nconst btn = document.getElementById('mybutton');\n\n\n\n\n\n\nOther selector methods exist like getElementByClassName, querySelector, querySelectorAll, …"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#dom-manipulation-modify",
+    "href": "posts/js4Shiny/slides/index.html#dom-manipulation-modify",
+    "title": "JS survival kit for Shiny devs",
+    "section": "DOM manipulation: modify",
+    "text": "DOM manipulation: modify\nYou may add a new CSS rule to test:\n.class1 {\n  background: green;\n  color: white;\n}\nAdd a new class:\nbtn.classList = 'class1 class2';\nbtn.classList.add('class3'); // keep othe classes.\nbtn.classList.remove('class2');\nconsole.log(btn.classList);\nChange text:\nbtn.innerHTML = \"New text\";"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#exercice-edit-dom-element",
+    "href": "posts/js4Shiny/slides/index.html#exercice-edit-dom-element",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Exercice: edit DOM element",
+    "text": "Exercice: edit DOM element\nConsider this &lt;button id=\"mybutton\"&gt;Go!&lt;/button&gt; button. Within JSFiddle, add some JS code to change the button content to My super button."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#dom-manipulation-create",
+    "href": "posts/js4Shiny/slides/index.html#dom-manipulation-create",
+    "title": "JS survival kit for Shiny devs",
+    "section": "DOM manipulation: create",
+    "text": "DOM manipulation: create\nCombine createElement and append:\nconst divTxt = \"Awesome text!\"\nconst myDiv = document.createElement(\"div\");\nmyDiv.classList = \"class1\";\nmyDiv.innerHTML = `&lt;span&gt;${txt}&lt;/span&gt;`;\ndocument.append(myDiv);"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#js-events",
+    "href": "posts/js4Shiny/slides/index.html#js-events",
+    "title": "JS survival kit for Shiny devs",
+    "section": "JS events",
+    "text": "JS events\nAdd an event listener:\nbtn.addEventListener('click', function() {\n  alert('Thanks!');\n});"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#exercise-events",
+    "href": "posts/js4Shiny/slides/index.html#exercise-events",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Exercise: events",
+    "text": "Exercise: events\nConsider this &lt;button id=\"mybutton\"&gt;Go!&lt;/button&gt; button. Add it an event listener that would change the button text to You clicked me! once clicked."
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#jquery",
+    "href": "posts/js4Shiny/slides/index.html#jquery",
+    "title": "JS survival kit for Shiny devs",
+    "section": "jQuery",
+    "text": "jQuery\njQuery is a famous JS library providing a user-friendly interface to manipulate the DOM.\nWrap your code in (ensure the DOM is ready):\n$(document).ready(function(){\n  // your code\n});\njQuery is less verbose than JS:\n// vanilla JS\nlet inner = document.getElementsByClassName('text').innerHTML;\n// jQuery\nlet inner = $('.text').html();\n$('button').on('click', function() {\n\n});"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#exercise.",
+    "href": "posts/js4Shiny/slides/index.html#exercise.",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Exercise.",
+    "text": "Exercise.\nConsider the following button\n&lt;button&gt;Clicks: 0&lt;/button&gt;\nWrite a script that shows how much time we clicked on the button. Fill in the blanks:\n$(function() {\n\n  // Init the click number\n  let n = ...;\n\n    // event listener for button element\n    $(...).click(function() {\n    // Increment the number of clicks\n    n += ...;\n    \n    // Update content\n    $(this).html(...);\n  });\n\n});"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#correction",
+    "href": "posts/js4Shiny/slides/index.html#correction",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Correction",
+    "text": "Correction\n$(function() {\n\n  // Init the click number\n  let n = 0;\n\n    // event listener for button element\n    $(\"button\").click(function() {\n      // Increment count\n      n += 1;\n      // (2) add the button value to the inner text\n      $(this).html(`Clicks: ${n}`);\n  });\n\n});"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#modularisation-1",
+    "href": "posts/js4Shiny/slides/index.html#modularisation-1",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Modularisation",
+    "text": "Modularisation\nHow to reuse a function in different scripts?\nOld way:\n// utils scripts\nconst findMax = (parm1, parm2) =&gt; {\n  return Math.max(parm1, parm2);\n}\n\nmodule.exports = {\n  findMax : findMax\n}\nThen, within the main.js script:\nconst { findMax } = require('&lt;PATH_TO_utils.js&gt;');\nfindMax(1, 2); // prints 2\nES6 way:\nexport { findMax, ... }; // in utils.js\nimport { findMax, ...} from './utils.js'; // in test.js"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#code-management",
+    "href": "posts/js4Shiny/slides/index.html#code-management",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Code management",
+    "text": "Code management\nAs ES6 is not fully supported by all web browsers, we use a transpiler like Babel to convert it to standard JS.\nJS bundlers for modules: webpack, esbuild, …"
+  },
+  {
+    "objectID": "posts/js4Shiny/slides/index.html#get-started-with-esbuild",
+    "href": "posts/js4Shiny/slides/index.html#get-started-with-esbuild",
+    "title": "JS survival kit for Shiny devs",
+    "section": "Get started with esbuild",
+    "text": "Get started with esbuild\n\nPre-requisite: have node installed (for npm).\n\nCreate a new folder.\nRun npm install --save-exact --save-dev esbuild.\nCreate a utils.js and add it:\n\nexport const findMax = (parm1, parm2) =&gt; {\n  return Math.max(parm1, parm2);\n}\n\nCreate main.js and add it:\n\nimport { findMax } from './utils.js';\nconsole.log(findMax(1, 2));\n\nEdit package.json to add a build instruction:\n\n{\n  \"scripts\": {\n    \"build\": \"esbuild main.js --bundle --minify --sourcemap=external --outfile=out.min.js\"\n  },\n  \"devDependencies\": { \n    \"esbuild\": \"0.19.6\"\n  }\n}\n\nRun npm run build and node out.js to test the new script. Notice that you can replace build by any predefined instruction."
   },
   {
     "objectID": "posts/webr-shiny/revealjs-demo/index.html#hello-shiny",

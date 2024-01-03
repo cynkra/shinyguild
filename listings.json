@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/js4Shiny/index.html",
       "/posts/webr-shiny/index.html"
     ]
   }
